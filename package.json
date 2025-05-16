@@ -1,0 +1,29 @@
+{
+  "name": "vitepress-site",
+  "version": "1.0.0",
+  "description": "文档与博客站点",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xianzhan/VitePress-Site.git"
+  },
+  "keywords": [
+    "xianzhan",
+    "文档",
+    "博客"
+  ],
+  "author": "xianzhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xianzhan/VitePress-Site/issues"
+  },
+  "homepage": "https://github.com/Xianzhan/VitePress-Site#readme",
+  "devDependencies": {
+    "vitepress": "^1.6.3"
+  }
+}
