@@ -8,6 +8,11 @@ export const nav: DefaultTheme.NavItem[] = [
             { text: 'Java 基础', link: '/Java/Java 基础/Base' },
         ]
     },
+    {
+        text: 'Rust', items: [
+            { text: 'Rust 基础', link: '/Rust/Rust 基础/Base' },
+        ]
+    },
     { text: 'Examples', link: '/markdown-examples' }
 ];
 
