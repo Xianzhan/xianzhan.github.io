@@ -11,6 +11,7 @@ export const nav: DefaultTheme.NavItem[] = [
     {
         text: 'Rust', items: [
             { text: 'Rust 基础', link: '/Rust/Rust 基础/Base' },
+            { text: 'crate', link: '/Rust/crate/index' },
         ]
     },
     { text: 'Examples', link: '/markdown-examples' }
@@ -18,6 +19,7 @@ export const nav: DefaultTheme.NavItem[] = [
 
 // 侧边栏
 export const sidebar: DefaultTheme.Sidebar = {
+    // Java
     '/Java/Java 基础/': [
         {
             text: 'Java',
@@ -26,5 +28,24 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: '集合框架', link: '/Java/Java 基础/集合框架' }
             ]
         }
-    ]
+    ],
+
+    // Rust
+    '/Rust/Rust 基础/': [
+        {
+            text: 'Rust',
+            items: [
+                { text: 'Rust 基础', link: '/Rust/Rust 基础/Base' },
+            ]
+        }
+    ],
+    '/Rust/crate/': [
+        {
+            text: 'Rust',
+            items: [
+                { text: 'crate', link: '/Rust/crate/index' },
+                { text: 'axum', link: '/Rust/crate/axum' },
+            ]
+        }
+    ],
 };
