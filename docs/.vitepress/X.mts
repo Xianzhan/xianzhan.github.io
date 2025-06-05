@@ -14,7 +14,6 @@ export const nav: DefaultTheme.NavItem[] = [
             { text: 'crate', link: '/Rust/crate/index' },
         ]
     },
-    { text: 'Examples', link: '/markdown-examples' }
 ];
 
 // 侧边栏

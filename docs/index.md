@@ -4,15 +4,15 @@ layout: home
 
 hero:
   name: "Xianzhan's Site"
-  text: "A VitePress Site"
-  tagline: My great project tagline
+  text: "西安站"
+  tagline: 少即是多
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Java
+      link: /Java/Java 基础/Base
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Rust
+      link: /Rust/Rust 基础/Base
 
 features:
   - title: Feature A
