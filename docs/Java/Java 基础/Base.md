@@ -109,3 +109,49 @@ java Hello.java
 |`long`|`0L`|`Long`|J|64|
 |`float`|`+0.0F`|`Float`|F|32|
 |`double`|`+0.0D`|`Double`|D|64|
+
+## 控制流
+
+**if**
+```java
+var r = RandomGenerator.getDefault();
+if (r.nextBoolean()) {
+    System.out.println("Hello, world!");
+} else {
+    System.out.println("Goodbye, world!");
+}
+```
+
+**switch**
+```java
+var r = RandomGenerator.getDefault();
+switch (r.nextInt(0, 2)) {
+    case 0:
+        System.out.println(0);
+        break;
+    case 1:
+        System.out.println(1);
+        break;
+    default:
+        System.out.println("default");
+        break;
+}
+```
+
+**for**
+```java
+// for 循环
+var array = {0, 1, 2, 3};
+for (int i : array) {
+    // @since 5 foreach 循环
+    System.out.println(i);
+}
+```
+
+**while**
+```java
+var r = RandomGenerator.getDefault();
+while (r.nextBoolean()) {
+    System.out.println("Hello, World!");
+}
+```
