@@ -8,6 +8,7 @@ export const sidebar: DefaultTheme.Sidebar = {
             text: 'Java',
             items: [
                 { text: 'Java 基础', link: '/Java/Java 基础/Base' },
+                { text: '字符串', link: '/Java/Java 基础/字符串' },
                 { text: '集合框架', link: '/Java/Java 基础/集合框架' }
             ]
         }
