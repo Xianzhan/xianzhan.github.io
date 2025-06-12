@@ -8,6 +8,7 @@ export default defineConfig({
 
   title: "Xianzhan's Site",
   description: "A VitePress Site",
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: nav,
@@ -16,5 +17,10 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/Xianzhan' }
     ]
+  },
+
+  markdown: {
+    // https://vitepress.dev/zh/guide/markdown#line-numbers
+    lineNumbers: true,
   }
 })
