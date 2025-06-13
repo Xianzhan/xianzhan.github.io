@@ -16,7 +16,14 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/Xianzhan' }
-    ]
+    ],
+
+    // https://vitepress.dev/zh/reference/default-theme-config#outline
+    outline: {
+      // On this page
+      label: '目录',
+      level: [2, 3],
+    }
   },
 
   markdown: {
