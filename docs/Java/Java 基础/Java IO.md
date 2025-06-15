@@ -18,3 +18,15 @@ try (BufferedWriter writer = Files.newBufferedWriter(testFile)) {
 String content = Files.readString(testFile);
 // content: "Hello world"
 ```
+
+## 网络
+
+### ICMP
+
+```java
+// ping 8.8.8.8
+// 检查 ip 是否能在 1000 毫秒内 ping 通
+boolean reachable = InetAddress.getByAddress(new byte[]{8, 8, 8, 8})
+        .isReachable(1000);
+// reachable: true
+```
