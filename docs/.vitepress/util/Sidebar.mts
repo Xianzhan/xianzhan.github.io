@@ -15,6 +15,14 @@ export const sidebar: DefaultTheme.Sidebar = {
             ]
         }
     ],
+    '/Java/Java 并发/': [
+        {
+            text: 'Java 并发',
+            items: [
+                { text: '线程', link: '/Java/Java 并发/线程' },
+            ]
+        }
+    ],
     '/Java/JVM/': [
         {
             text: 'JVM',
