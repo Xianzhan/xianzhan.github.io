@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Xianzhan/VitePress-Site#readme",
   "devDependencies": {
+    "markdown-it-mathjax3": "^4.3.2",
     "vitepress": "^1.6.3"
   }
 }

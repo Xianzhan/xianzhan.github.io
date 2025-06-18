@@ -29,5 +29,7 @@ export default defineConfig({
   markdown: {
     // https://vitepress.dev/zh/guide/markdown#line-numbers
     lineNumbers: true,
+    // https://vitepress.dev/zh/guide/markdown#math-equations
+    math: true
   }
 })
