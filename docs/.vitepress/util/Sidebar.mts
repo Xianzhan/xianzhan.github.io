@@ -20,6 +20,7 @@ export const sidebar: DefaultTheme.Sidebar = {
             text: 'Java 并发',
             items: [
                 { text: '线程', link: '/Java/Java 并发/线程' },
+                { text: '线程池', link: '/Java/Java 并发/线程池' },
             ]
         }
     ],
