@@ -23,6 +23,7 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: '线程池', link: '/Java/Java 并发/线程池' },
                 { text: '并发同步', link: '/Java/Java 并发/并发同步' },
                 { text: '并发编排', link: '/Java/Java 并发/并发编排' },
+                { text: '定时任务', link: '/Java/Java 并发/定时任务' },
             ]
         }
     ],
