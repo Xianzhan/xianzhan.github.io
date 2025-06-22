@@ -97,7 +97,7 @@ java Hello.java
 - `false`
 - `null`
 
-## 内置类型
+## 原始类型
 
 |类型|默认值|包装类|虚拟机内部符号|位数|
 |---|---|---|---|---|
@@ -109,6 +109,68 @@ java Hello.java
 |`long`|`0L`|`Long`|J|64|
 |`float`|`+0.0F`|`Float`|F|32|
 |`double`|`+0.0D`|`Double`|D|64|
+
+## class
+
+```java
+public class Human {
+
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+```
+
+## enum
+
+@since 5 `public abstract class Enum<E extends Enum<E>>`
+
+```java
+public enum HumanGender {
+
+    MALE("MALE"),
+    FEMALE("FEMALE"),
+    OTHER("OTHER");
+
+    private final String name;
+
+    HumanGender(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+```
+
+## record
+
+> @since 14 [JEP 359: Records (Preview)](https://openjdk.org/jeps/359)<br>
+> @since 15 [JEP 384: Records (Second Preview)](https://openjdk.org/jeps/384)<br>
+> @since 16 [JEP 395: Records](https://openjdk.org/jeps/395)
+
+`public abstract class Record`
+
+```java
+public record Human(String name, int age) {
+}
+```
 
 ## 控制流
 
