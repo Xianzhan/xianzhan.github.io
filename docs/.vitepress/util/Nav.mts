@@ -10,10 +10,5 @@ export const nav: DefaultTheme.NavItem[] = [
             { text: 'JVM', link: '/Java/JVM/Base' },
         ]
     },
-    {
-        text: 'Rust', items: [
-            { text: 'Rust 基础', link: '/Rust/Rust 基础/Base' },
-            { text: 'crate', link: '/Rust/crate/index' },
-        ]
-    },
+
 ];

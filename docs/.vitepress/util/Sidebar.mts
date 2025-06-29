@@ -37,22 +37,4 @@ export const sidebar: DefaultTheme.Sidebar = {
         }
     ],
 
-    // Rust
-    '/Rust/Rust 基础/': [
-        {
-            text: 'Rust',
-            items: [
-                { text: 'Rust 基础', link: '/Rust/Rust 基础/Base' },
-            ]
-        }
-    ],
-    '/Rust/crate/': [
-        {
-            text: 'Rust',
-            items: [
-                { text: 'crate', link: '/Rust/crate/index' },
-                { text: 'axum', link: '/Rust/crate/axum' },
-            ]
-        }
-    ],
 };
