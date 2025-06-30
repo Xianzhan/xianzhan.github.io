@@ -10,5 +10,9 @@ export const nav: DefaultTheme.NavItem[] = [
             { text: 'JVM', link: '/Java/JVM/Base' },
         ]
     },
-
+    {
+        text: 'Go', items: [
+            { text: 'Go 基础', link: '/Go/Go 基础/Base' },
+        ]
+    },
 ];
