@@ -168,7 +168,47 @@ public enum HumanGender {
 `public abstract class Record`
 
 ```java
-public record Human(String name, int age) {
+// record 实现
+public record HumanRecord(String name, int age) {
+}
+
+// class 实现
+public class HumanClass {
+    private final String name;
+    private final int    age;
+
+    public HumanClass(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public int age() {
+        return age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        HumanClass that = (HumanClass) o;
+        return age == that.age && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+
+    @Override
+    public String toString() {
+        return "HumanClass{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
 ```
 
