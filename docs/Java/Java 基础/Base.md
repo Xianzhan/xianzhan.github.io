@@ -174,7 +174,8 @@ public record Human(String name, int age) {
 
 ## 控制流
 
-**if**
+### if
+
 ```java
 var r = RandomGenerator.getDefault();
 if (r.nextBoolean()) {
@@ -184,7 +185,12 @@ if (r.nextBoolean()) {
 }
 ```
 
-**switch**
+### switch
+
+> @since 12 [JEP 325: Switch Expressions (Preview)](https://openjdk.org/jeps/325)<br>
+> @since 13 [JEP 354: Switch Expressions (Second Preview)](https://openjdk.org/jeps/354)<br>
+> @since 14 [JEP 361: Switch Expressions](https://openjdk.org/jeps/361)<br>
+
 ```java
 var r = RandomGenerator.getDefault();
 switch (r.nextInt(0, 2)) {
@@ -198,9 +204,41 @@ switch (r.nextInt(0, 2)) {
         System.out.println("default");
         break;
 }
+
+// @since 12 JEP 325: Switch Expressions (Preview)
+switch (day) {
+    case MONDAY, FRIDAY, SUNDAY -> System.out.println(6);
+    case TUESDAY                -> System.out.println(7);
+    case THURSDAY, SATURDAY     -> System.out.println(8);
+    case WEDNESDAY              -> System.out.println(9);
+}
+
+// @since 14
+int numLetters = switch (day) {
+    case MONDAY, FRIDAY, SUNDAY -> 6;
+    case TUESDAY                -> 7;
+    case THURSDAY, SATURDAY     -> 8;
+    case WEDNESDAY              -> 9;
+};
+
+int j = switch (day) {
+    case MONDAY  -> 0;
+    case TUESDAY -> 1;
+    default      -> {
+        int k = day.toString().length();
+        int result = f(k);
+
+        // Yielding a value
+        // 此处不可以使用 return
+        // return 会导致后面代码不会继续执行
+        // 所以使用一个新的关键字 yield 返回给 j
+        yield result;
+    }
+};
 ```
 
-**for**
+### for
+
 ```java
 // for 循环
 var array = {0, 1, 2, 3};
@@ -210,7 +248,8 @@ for (int i : array) {
 }
 ```
 
-**while**
+### while
+
 ```java
 var r = RandomGenerator.getDefault();
 while (r.nextBoolean()) {
