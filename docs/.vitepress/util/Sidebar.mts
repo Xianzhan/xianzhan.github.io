@@ -37,13 +37,4 @@ export const sidebar: DefaultTheme.Sidebar = {
         }
     ],
 
-    // Go
-    '/Go/Go 基础/': [
-        {
-            text: 'Go',
-            items: [
-                { text: 'Go 基础', link: '/Go/Go 基础/Base' },
-            ]
-        }
-    ],
 };
