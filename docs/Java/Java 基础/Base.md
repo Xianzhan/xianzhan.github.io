@@ -212,6 +212,42 @@ public class HumanClass {
 }
 ```
 
+## sealed
+
+> since 15 [JEP 360: Sealed Classes (Preview)](https://openjdk.org/jeps/360)<br>
+> since 16 [JEP 397: Sealed Classes (Second Preview)](https://openjdk.org/jeps/397)<br>
+> since 17 [JEP 409: Sealed Classes](https://openjdk.org/jeps/409)<br>
+
+密封接口/类, 可控制由哪些子类实现.
+
+```java
+public sealed interface SealedInterface permits
+        NonSealedClass,
+        SealedFinalClass,
+        SealedClass,
+        SealedRecord {
+}
+
+// 第一种实现 non-sealed
+public non-sealed class NonSealedClass implements SealedInterface {
+}
+
+// 第二种实现 final
+public final class SealedFinalClass implements SealedInterface {
+}
+
+// 第三种实现 sealed, 但该类至少还需要一个子类
+public sealed class SealedClass implements SealedInterface
+        permits SealedSubClass {
+}
+public final class SealedSubClass extends SealedClass {
+}
+
+// 第四种实现 record, 因为 record 本身就是 final 的
+public record SealedRecord() implements SealedInterface {
+}
+```
+
 ## 控制流
 
 ### if
