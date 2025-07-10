@@ -30,6 +30,10 @@ export default defineConfig({
     // https://vitepress.dev/zh/guide/markdown#line-numbers
     lineNumbers: true,
     // https://vitepress.dev/zh/guide/markdown#math-equations
-    math: true
+    math: true,
+    // https://vitepress.dev/zh/guide/markdown#image-lazy-loading
+    image: {
+      lazyLoading: true,
+    },
   }
 })
