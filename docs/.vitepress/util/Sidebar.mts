@@ -33,6 +33,13 @@ export const sidebar: DefaultTheme.Sidebar = {
             text: 'JVM',
             items: [
                 { text: 'JVM 基础', link: '/Java/JVM/Base' },
+                { 
+                    text: 'GC',
+                    collapsed: true,
+                    items: [
+                        { text: 'GC 基础', link: '/Java/JVM/GC/Base' },
+                    ]
+                },
             ]
         }
     ],
