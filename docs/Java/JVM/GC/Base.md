@@ -68,3 +68,22 @@ JVM 有一套自己的自动管理内存的机制, 称之为**垃圾回收器**,
 ![Base_Menory_Management_main_b_null.excalidraw.svg](./Base_Menory_Management_main_b_null.excalidraw.svg)
 
 代码逻辑全部执行完后, 堆上有很多无法访问的垃圾数据, 若该应用是个服务器应用或其他, 还需要执行其他方法, 堆始终会有用完的时候, 那么堆快满的时候, 垃圾收集器就要工作清理垃圾防止内存耗尽导致 `OutOfMemoryError`.
+
+## 回收阶段
+
+清理内存时, 并非一步到位的事情. 分为以下三个阶段:
+1. 追踪(Tracing): 识别所有可达对象
+2. 释放(Freeing): 释放不再使用的内存
+3. 压缩(Compaction): 移动 heap 对象, 并重新定位活动对象
+
+## Stopping The World
+
+简称 STW, 是指在执行垃圾回收的过程中, 冻结所有应用线程的执行, 直到垃圾回收线程执行结束.
+
+过程：
+
+![Base_STW.excalidraw.svg](./Base_STW.excalidraw.svg)
+
+### SafePoint
+
+安全点, 应用线程执行过程中的一些特殊位置. SafePoint 保存了应用线程的上下文.
