@@ -10,9 +10,6 @@ hero:
     - theme: brand
       text: Java
       link: /Java/Java 基础/Base
-    - theme: alt
-      text: Rust
-      link: /Rust/Rust 基础/Base
 
 features:
   - title: Feature A
