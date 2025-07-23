@@ -8,6 +8,7 @@ export const nav: DefaultTheme.NavItem[] = [
             { text: 'Java 基础', link: '/Java/Java 基础/Base' },
             { text: 'Java 并发', link: '/Java/Java 并发/线程' },
             { text: 'JVM', link: '/Java/JVM/Base' },
+            { text: 'Spring', link: '/Java/Spring/Base' },
         ]
     },
 ];

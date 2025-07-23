@@ -43,5 +43,12 @@ export const sidebar: DefaultTheme.Sidebar = {
             ]
         }
     ],
-
+    '/Java/Spring/': [
+        {
+            text: 'Spring',
+            items: [
+                { text: 'Spring 基础', link: '/Java/Spring/Base' },
+            ]
+        }
+    ],
 };
