@@ -13,6 +13,7 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: '集合框架', link: '/Java/Java 基础/集合框架' },
                 { text: 'Java IO', link: '/Java/Java 基础/Java IO' },
                 { text: '注解', link: '/Java/Java 基础/注解' },
+                { text: '类加载器', link: '/Java/Java 基础/类加载器' },
                 { text: '代理', link: '/Java/Java 基础/代理' },
             ]
         }
@@ -34,7 +35,7 @@ export const sidebar: DefaultTheme.Sidebar = {
             text: 'JVM',
             items: [
                 { text: 'JVM 基础', link: '/Java/JVM/Base' },
-                { 
+                {
                     text: 'GC',
                     collapsed: true,
                     items: [
