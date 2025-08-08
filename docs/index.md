@@ -10,13 +10,16 @@ hero:
     - theme: brand
       text: Java
       link: /Java/Java 基础/Base
+    - theme: alt
+      text: View on GitHub
+      link: https://github.com/Xianzhan/xianzhan.github.io
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 技术价值
+    details: 技术是为业务服务的
+  - title: 业务价值
+    details: 为企业创造可衡量的价值
+  - title: 企业价值
+    details: 为社会服务
 ---
 
