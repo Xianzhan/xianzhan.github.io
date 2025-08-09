@@ -16,6 +16,47 @@
 |对象|ObjectInputStream|ObjectOutputStream|||
 |转换|||InputStreamReader|OutputStreamWriter|
 
+## 数组
+
+### ByteArrayInputStream
+
+```java
+OutputStream os = // data 传输的目的输出流
+byte[] data = // 数据源获取的 byte 数组数据
+// 转为 ByteArrayInputStream 类型处理
+InputStream is = new ByteArrayInputStream(data);
+is.transferTo(os);
+```
+
+### ByteArrayOutputStream
+
+```java
+var os = new ByteArrayOutputStream();
+os.write("Hello world".getBytes(StandardCharsets.UTF_8));
+byte[] ba = os.toByteArray();
+// ba: [72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100]
+```
+
+### CharArrayReader
+
+```java
+char[] data = "123456789".toCharArray();
+CharArrayReader car = new CharArrayReader(data);
+char[] target = "hello".toCharArray();
+car.read(target);
+// target: ['1', '2', '3', '4', '5']
+```
+
+### CharArrayWriter
+
+```java
+CharArrayWriter caw = new CharArrayWriter();
+caw.write("Hello ");
+caw.write("world");
+char[] ca = caw.toCharArray();
+// ca: ['H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+```
+
 ## 目录文件
 
 ```java
