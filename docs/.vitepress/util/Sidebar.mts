@@ -12,6 +12,7 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: '日期时间', link: '/Java/Java 基础/日期时间' },
                 { text: '集合框架', link: '/Java/Java 基础/集合框架' },
                 { text: 'Java IO', link: '/Java/Java 基础/Java IO' },
+                { text: '网络编程', link: '/Java/Java 基础/网络编程' },
                 { text: '注解', link: '/Java/Java 基础/注解' },
                 { text: '类加载器', link: '/Java/Java 基础/类加载器' },
                 { text: '反射', link: '/Java/Java 基础/反射' },
