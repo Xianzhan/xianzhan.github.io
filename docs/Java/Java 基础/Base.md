@@ -252,12 +252,22 @@ public record SealedRecord() implements SealedInterface {
 
 ### if
 
+> @since 14 [JEP 305: Pattern Matching for instanceof (Preview)](https://openjdk.org/jeps/305)<br>
+> @since 15 [JEP 375: Pattern Matching for instanceof (Second Preview)](https://openjdk.org/jeps/375)<br>
+> @since 16 [JEP 394: Pattern Matching for instanceof](https://openjdk.org/jeps/394)<br>
+
 ```java
 var r = RandomGenerator.getDefault();
 if (r.nextBoolean()) {
     System.out.println("Hello, world!");
 } else {
     System.out.println("Goodbye, world!");
+}
+
+// @since 14
+Object o = "Hello";
+if (o instanceof String s) {
+    System.out.println(s);
 }
 ```
 
