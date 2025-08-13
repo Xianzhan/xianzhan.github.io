@@ -11,4 +11,9 @@ export const nav: DefaultTheme.NavItem[] = [
             { text: 'Spring', link: '/Java/Spring/Base' },
         ]
     },
+    {
+        text: '系统', items: [
+            { text: '网络', link: '/System/Network/Base' },
+        ]
+    },
 ];

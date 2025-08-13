@@ -55,4 +55,14 @@ export const sidebar: DefaultTheme.Sidebar = {
             ]
         }
     ],
+
+    // 系统
+    '/System/Network/': [
+        {
+            text: '网络',
+            items: [
+                { text: '网络基础', link: '/System/Network/Base' },
+            ]
+        }
+    ],
 };
