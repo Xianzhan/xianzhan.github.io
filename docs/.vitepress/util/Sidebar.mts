@@ -56,6 +56,16 @@ export const sidebar: DefaultTheme.Sidebar = {
         }
     ],
 
+    // 服务
+    '/Service/MySQL/': [
+        {
+            text: 'MySQL',
+            items: [
+                { text: '基础', link: '/Service/MySQL/Base' },
+            ]
+        }
+    ],
+
     // 系统
     '/System/Network/': [
         {

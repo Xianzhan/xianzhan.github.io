@@ -12,6 +12,11 @@ export const nav: DefaultTheme.NavItem[] = [
         ]
     },
     {
+        text: '服务', items: [
+            { text: 'MySQL', link: '/Service/MySQL/Base' },
+        ]
+    },
+    {
         text: '系统', items: [
             { text: '网络', link: '/System/Network/Base' },
         ]
