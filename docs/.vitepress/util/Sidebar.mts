@@ -72,6 +72,7 @@ export const sidebar: DefaultTheme.Sidebar = {
             text: '网络',
             items: [
                 { text: '网络基础', link: '/System/Network/Base' },
+                { text: 'TCP', link: '/System/Network/TCP' },
             ]
         }
     ],
