@@ -51,7 +51,8 @@ export const sidebar: DefaultTheme.Sidebar = {
         {
             text: 'Spring',
             items: [
-                { text: 'Spring 基础', link: '/Java/Spring/Base' },
+                { text: '基础', link: '/Java/Spring/Base' },
+                { text: '数据访问', link: '/Java/Spring/DataAccess' },
             ]
         }
     ],
