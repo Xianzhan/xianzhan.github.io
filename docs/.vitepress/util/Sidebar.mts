@@ -3,20 +3,20 @@ import type { DefaultTheme } from 'vitepress'
 // 侧边栏 https://vitepress.dev/zh/reference/default-theme-sidebar
 export const sidebar: DefaultTheme.Sidebar = {
     // Java
-    '/Java/Java 基础/': [
+    '/Java/JavaBase/': [
         {
             text: 'Java',
             items: [
-                { text: 'Java 基础', link: '/Java/Java 基础/Base' },
-                { text: '字符串', link: '/Java/Java 基础/字符串' },
-                { text: '日期时间', link: '/Java/Java 基础/日期时间' },
-                { text: '集合框架', link: '/Java/Java 基础/集合框架' },
-                { text: 'Java IO', link: '/Java/Java 基础/Java IO' },
-                { text: '网络编程', link: '/Java/Java 基础/网络编程' },
-                { text: '注解', link: '/Java/Java 基础/注解' },
-                { text: '类加载器', link: '/Java/Java 基础/类加载器' },
-                { text: '反射', link: '/Java/Java 基础/反射' },
-                { text: '代理', link: '/Java/Java 基础/代理' },
+                { text: '基础', link: '/Java/JavaBase/Base' },
+                { text: '字符串', link: '/Java/JavaBase/String' },
+                { text: '日期时间', link: '/Java/JavaBase/DateTime' },
+                { text: '集合框架', link: '/Java/JavaBase/CollectionFramework' },
+                { text: 'IO', link: '/Java/JavaBase/IO' },
+                { text: '网络编程', link: '/Java/JavaBase/Network' },
+                { text: '注解', link: '/Java/JavaBase/Annotation' },
+                { text: '类加载器', link: '/Java/JavaBase/ClassLoader' },
+                { text: '反射', link: '/Java/JavaBase/Reflection' },
+                { text: '代理', link: '/Java/JavaBase/Proxy' },
             ]
         }
     ],
