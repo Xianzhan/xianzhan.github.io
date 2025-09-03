@@ -20,15 +20,15 @@ export const sidebar: DefaultTheme.Sidebar = {
             ]
         }
     ],
-    '/Java/Java 并发/': [
+    '/Java/JavaConcurrency/': [
         {
             text: 'Java 并发',
             items: [
-                { text: '线程', link: '/Java/Java 并发/线程' },
-                { text: '线程池', link: '/Java/Java 并发/线程池' },
-                { text: '并发同步', link: '/Java/Java 并发/并发同步' },
-                { text: '并发编排', link: '/Java/Java 并发/并发编排' },
-                { text: '定时任务', link: '/Java/Java 并发/定时任务' },
+                { text: '线程', link: '/Java/JavaConcurrency/Thread' },
+                { text: '线程池', link: '/Java/JavaConcurrency/ThreadPool' },
+                { text: '并发同步', link: '/Java/JavaConcurrency/ConcurrentSync' },
+                { text: '并发编排', link: '/Java/JavaConcurrency/ConcurrentOrchestration' },
+                { text: '定时任务', link: '/Java/JavaConcurrency/ScheduledTasks' },
             ]
         }
     ],
