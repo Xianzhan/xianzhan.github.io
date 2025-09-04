@@ -42,6 +42,35 @@ public static void main(String[] args) {
 
 ![Base_Get_Bean_AService.excalidraw.svg](./Base_Get_Bean_AService.excalidraw.svg)
 
+```java
+AbstractBeanFactory
+    #doGetBean(final String name, final Class<T> requiredType, final Object[] args, boolean typeCheckOnly)
+    // 尝试从一级缓存获取，若有，则返回
+    #getSingleton(String beanName)
+    // 先实例依赖的 Bean
+    RootBeanDefinition
+        #getDependsOn()
+    #getSingleton(String beanName, ObjectFactory<?> singletonFactory)
+        ObjectFactory
+            #getObject()
+            AbstractAutowireCapableBeanFactory
+                #createBean(String beanName, RootBeanDefinition mbd, Object[] args)
+                #resolveBeforeInstantiation(String beanName, RootBeanDefinition mbd)
+                #doCreateBean(final String beanName, final RootBeanDefinition mbd, final Object[] args)
+                    // 根据反射获取构造器实例化
+                    BeanWrapper
+                        #getWrappedInstance()
+                    // 提前暴露给三级缓存
+                    #addSingletonFactory(String beanName, ObjectFactory singletonFactory)
+                    // 依赖注入
+                    #populateBean(String beanName, RootBeanDefinition mbd, BeanWrapper bw)
+                        // 实例化后处理
+                        InstantiationAwareBeanPostProcessor
+                            #postProcessAfterInstantiation(Object bean, String beanName)
+                    // 初始化
+                    #initializeBean(final String beanName, final Object bean, RootBeanDefinition mbd)
+```
+
 上面是获取一个自定义 Bean 的流程，循环依赖 Bean 的获取流程
 
 ```java
