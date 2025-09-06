@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Xianzhan/VitePress-Site.git"
+    "url": "git+https://github.com/Xianzhan/xianzhan.github.io.git"
   },
   "keywords": [
     "xianzhan",
@@ -20,9 +20,9 @@
   "author": "xianzhan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Xianzhan/VitePress-Site/issues"
+    "url": "https://github.com/Xianzhan/xianzhan.github.io/issues"
   },
-  "homepage": "https://github.com/Xianzhan/VitePress-Site#readme",
+  "homepage": "https://github.com/Xianzhan/xianzhan.github.io#readme",
   "devDependencies": {
     "markdown-it-mathjax3": "^4.3.2",
     "vitepress": "^1.6.3"
