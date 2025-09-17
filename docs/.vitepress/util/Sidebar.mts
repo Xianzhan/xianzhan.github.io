@@ -18,6 +18,7 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: '类加载器', link: '/Java/JavaBase/ClassLoader' },
                 { text: '反射', link: '/Java/JavaBase/Reflection' },
                 { text: '代理', link: '/Java/JavaBase/Proxy' },
+                { text: 'Lambda', link: '/Java/JavaBase/Lambda' },
             ]
         }
     ],
