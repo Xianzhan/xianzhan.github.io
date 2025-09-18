@@ -4,15 +4,109 @@
 
 `java -version`
 ```sh
-openjdk version "24" 2025-03-18
-OpenJDK Runtime Environment GraalVM CE 24+36.1 (build 24+36-jvmci-b01)
-OpenJDK 64-Bit Server VM GraalVM CE 24+36.1 (build 24+36-jvmci-b01, mixed mode, sharing)
+openjdk version "25" 2025-09-16
+OpenJDK Runtime Environment GraalVM CE 25+37.1 (build 25+37-jvmci-b01)
+OpenJDK 64-Bit Server VM GraalVM CE 25+37.1 (build 25+37-jvmci-b01, mixed mode, sharing)
 ```
 
-## Hello world
+## main
+
+> @since 21 [JEP 445: Unnamed Classes and Instance Main Methods (Preview)](https://openjdk.org/jeps/445)<br>
+> @since 22 [JEP 463: Implicitly Declared Classes and Instance Main Methods (Second Preview)](https://openjdk.org/jeps/463)<br>
+> @since 23 [JEP 477: Implicitly Declared Classes and Instance Main Methods (Third Preview)](https://openjdk.org/jeps/477)<br>
+> @since 24 [JEP 495: Simple Source Files and Instance Main Methods (Fourth Preview)](https://openjdk.org/jeps/495)<br>
+> @since 25 [JEP 512: Compact Source Files and Instance Main Methods](https://openjdk.org/jeps/512)<br>
 
 Hello.java
+
 ```java
+// 实例 main()
+void main() {
+    IO.println("Hello void main()");
+}
+```
+
+> 如何查找实例的 `main()` 方法?<br>
+>
+> `java Hello` JVM 加载主类 [src/java.base/share/native/libjli/java.c#L592](https://github.com/openjdk/jdk/blob/jdk-25%2B36/src/java.base/share/native/libjli/java.c#L592)
+
+```c
+// java.c#JavaMain(void* _args)
+mainClass = LoadMainClass(env, mode, what);
+```
+
+> 调用 [`sun.launcher.LauncherHelper#checkAndLoadMain`](https://github.com/openjdk/jdk/blob/jdk-25%2B36/src/java.base/share/classes/sun/launcher/LauncherHelper.java#L734-L767) 方法确认主类是否静态和是否有参数
+
+```c
+// java.c#LoadMainClass(JNIEnv *env, int mode, char *name)
+jclass cls = GetLauncherHelperClass(env);
+NULL_CHECK0(mid = (*env)->GetStaticMethodID(env, cls,
+            "checkAndLoadMain",
+            "(ZILjava/lang/String;)Ljava/lang/Class;"));
+NULL_CHECK0(result = (*env)->CallStaticObjectMethod(env, cls, mid,
+                                                    USE_STDERR, mode, str));
+```
+
+```java
+public final class LauncherHelper {
+    private static boolean isStaticMain = false;
+    private static boolean noArgMain = false;
+
+    public static Class<?> checkAndLoadMain(boolean printToStder
+                                        int mode,
+                                        String what) {
+        // ...
+        validateMainMethod(mainClass);
+        return mainClass;
+    }
+
+    private static void validateMainMethod(Class<?> mainClass) {
+        Method mainMethod = null;
+        try {
+            mainMethod = MethodFinder.findMainMethod(mainClass);
+        }
+        // ...
+
+        int mods = mainMethod.getModifiers();
+        // 是否静态 main 方法
+        isStaticMain = Modifier.isStatic(mods);
+        // 是否无参数
+        noArgMain = mainMethod.getParameterCount() == 0;
+    }
+}
+```
+
+> 最后根据 `LauncherHelper#isStaticMain` 和 `LauncherHelper#noArgMain` [判断](https://github.com/openjdk/jdk/blob/jdk-25%2B36/src/java.base/share/native/libjli/java.c#L627-L648)调用
+
+```c
+// java.c#JavaMain(void* _args)
+helperClass = GetLauncherHelperClass(env);
+isStaticMainField = (*env)->GetStaticFieldID(env, helperClass, "isStaticMain", "Z");
+CHECK_EXCEPTION_NULL_LEAVE(isStaticMainField);
+isStaticMain = (*env)->GetStaticBooleanField(env, helperClass, isStaticMainField);
+noArgMainField = (*env)->GetStaticFieldID(env, helperClass, "noArgMain", "Z");
+CHECK_EXCEPTION_NULL_LEAVE(noArgMainField);
+noArgMain = (*env)->GetStaticBooleanField(env, helperClass, noArgMainField);
+
+if (isStaticMain) {
+    if (noArgMain) {
+        ret = invokeStaticMainWithoutArgs(env, mainClass);
+    } else {
+        ret = invokeStaticMainWithArgs(env, mainClass, mainArgs);
+    }
+} else {
+    if (noArgMain) {
+        ret = invokeInstanceMainWithoutArgs(env, mainClass);
+    } else {
+        ret = invokeInstanceMainWithArgs(env, mainClass, mainArgs);
+    }
+}
+```
+
+Hello.java
+
+```java
+// 类 main(String[])
 public class Hello {
     public static void main(String[] args) {
         System.out.println("Hello world");
