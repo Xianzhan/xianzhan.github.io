@@ -38,12 +38,13 @@ export const sidebar: DefaultTheme.Sidebar = {
         {
             text: 'JVM',
             items: [
-                { text: 'JVM 基础', link: '/Java/JVM/Base' },
+                { text: '基础', link: '/Java/JVM/Base' },
+                { text: '初始化', link: '/Java/JVM/Init' },
                 {
                     text: 'GC',
                     collapsed: true,
                     items: [
-                        { text: 'GC 基础', link: '/Java/JVM/GC/Base' },
+                        { text: '基础', link: '/Java/JVM/GC/Base' },
                     ]
                 },
             ]
