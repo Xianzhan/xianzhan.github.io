@@ -59,6 +59,14 @@ export const sidebar: DefaultTheme.Sidebar = {
             ]
         }
     ],
+    '/Java/MyBatis/': [
+        {
+            text: 'MyBatis',
+            items: [
+                { text: '基础', link: '/Java/MyBatis/Base' },
+            ]
+        }
+    ],
 
     // 服务
     '/Service/MySQL/': [

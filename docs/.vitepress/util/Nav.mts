@@ -9,6 +9,7 @@ export const nav: DefaultTheme.NavItem[] = [
             { text: 'Java 并发', link: '/Java/JavaConcurrency/Thread' },
             { text: 'JVM', link: '/Java/JVM/Base' },
             { text: 'Spring', link: '/Java/Spring/Base' },
+            { text: 'MyBatis', link: '/Java/MyBatis/Base' },
         ]
     },
     {
