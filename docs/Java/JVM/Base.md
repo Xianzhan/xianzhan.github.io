@@ -18,6 +18,44 @@
 
 控制参数：`-XX:MaxDirectMemorySize`
 
+> 直接内存无法分配内存的日志是怎样的？<br>
+
+Main.java
+
+```java
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+
+void main() {
+    var buffers = new ArrayList<>();
+    while (true) {
+        // 1 G
+        var buffer = ByteBuffer.allocateDirect(1024 * 1024 * 1024);
+        buffer.put((byte) 1);
+        buffers.add(buffer);
+    }
+}
+```
+
+执行命令：
+
+```sh
+# jdk 25
+java -Xlog:gc* Main.java
+```
+
+那么日志则为
+
+```log
+...
+Exception in thread "main" java.lang.OutOfMemoryError: Cannot reserve 1073741824 bytes of direct buffer memory (allocated: 3221225472, limit: 4120903680)
+        at java.base/java.nio.Bits.reserveMemory(Bits.java:178)
+        at java.base/java.nio.DirectByteBuffer.<init>(DirectByteBuffer.java:108)
+        at java.base/java.nio.ByteBuffer.allocateDirect(ByteBuffer.java:367)
+        at Main.main(Main.java:7)
+...
+```
+
 - **元空间**
 
 存放类的元数据，如类名、字节码等。
@@ -37,6 +75,7 @@ void main() {
 执行命令：
 
 ```sh
+# jdk 25
 java -XX:MaxMetaspaceSize=1024K -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./ -Xlog:gc* Main.java
 ```
 
