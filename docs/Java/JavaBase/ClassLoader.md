@@ -1,8 +1,22 @@
 # 类加载器
 
-## 概述
-
 JVM 启动的时候，不会一次性加载所有的 `.class` 文件，而是根据需要去动态加载。加载 `.class` 文件的则是 `ClassLoader`。
+
+`ClassLoader` 的核心方法有：
+
+- `ClassLoader#loadClass`: 加载类的入口，实现**双亲委派模型**
+- `ClassLoader#findClass`: 定义查找并读取字节码数据
+- `ClassLoader#defineClass`: 将字节数组转换为 `Class` 对象，不可重写
+- `ClassLoader#resolveClass`: 链接已加载的类，不可重写
+
+## 双亲委派模型
+
+双亲委派模型是 Java 类加载机制的核心设计，它通过一套良好的规则来确保类的**安全**加载和**唯一性**。
+
+- 安全性：防止核心 API 被篡改。例如，用户自定义一个 `java.lang.String` 类，该请求最终委派给 Bootstrap 加载器，由它加载 JVM 内部的 `java.lang.String` 类，从而确保核心库的安全。
+- 唯一性：同一个类不会被不同的类加载器重复加载。这避免了在 JVM 中出现多个全限定名相同但由不同加载器加载的类，防止类型转换混乱（如：`ClassCastException`）。
+
+## 系统内置类加载器
 
 JDK 自带以下类加载器：
 
@@ -60,7 +74,7 @@ String appClassPath = System.getProperty("java.class.path");
 // appClassPath: java -classpath/-cp 的目录
 ```
 
-## 自定义
+## 自定义类加载器
 
 ```java
 import java.nio.file.Files;
