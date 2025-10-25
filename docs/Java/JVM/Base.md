@@ -4,7 +4,9 @@
 
 - [Java Language and Virtual Machine Specifications](https://docs.oracle.com/javase/specs/index.html)
 
-## 内存
+## 内存架构
+
+![Base_JVM_Architecture.excalidraw.svg](./Base_JVM_Architecture.excalidraw.svg)
 
 总内存 ≈ 堆内存 + 直接内存 + 元空间 + 线程栈 + JIT 代码缓存 + GC 开销 + JVM 自身内存<br>
 
@@ -152,6 +154,25 @@ java.lang.OutOfMemoryError: Metaspace
 
 JVM 内部维护的数据结构，加载的 so/dll 库等。
 
-## 架构
+## 内存模型
 
-![Base_JVM_Architecture.excalidraw.svg](./Base_JVM_Architecture.excalidraw.svg)
+Java 内存模型（Java Memory Model, JMM）旨在解决由于硬件缓存、指令重排序等优化带来的三大问题：
+
+1. 原子性：确保关键操作不被中断
+2. 可见性：确保一个线程修改了共享变量后，其他线程能立即看到最新结果
+3. 有序性：确保程序执行顺序符合预期
+
+JMM 定义了一个抽象概念：每个**线程**有自己的**工作内存**（可以理解为线程私有的高速缓存或寄存器抽象），所有**共享变量**都在**主内存**（主要对应堆中的共享数据区域）。即定义了**多线程之间如何通过内存交互**。
+
+### Happens-Before 原则
+
+Happens-Before 原则是 JMM 的基石，它为解决并发编程中的**可见性**和**有序性**问题提供了一套关键规则：
+
+1. 程序顺序规则：同一线程内，书写在前面的操作 Happens-Before 后续操作
+2. 监视器锁规则​：对一个锁的解锁操作 Happens-Before 于后续对同一个锁的加锁操作
+3. `volatile` 变量规则​：对一个 `volatile` 变量的写操作 Happens-Before 于后续对这个变量的读操作
+4. 线程启动规则：线程的 `Thread#start` 方法调用 Happens-Before 于该线程中的任何操作
+5. 线程终止规则​：线程中的所有操作都 Happens-Before 于其他线程成功从该线程的 `Thread#join` 方法返回
+6. 线程中断规则：对线程 `Thread#interrupt` 方法的调用 Happens-Before 于被中断线程检测到中断事件
+7. 对象终结规则​：一个对象的构造函数执行结束 Happens-Before 于该对象的 `Object#finalize` 方法的开始
+8. 传递性规则：如果操作 A Happens-Before 于 B，操作 B Happens-Before 于 C，那么操作 A Happens-Before 于 C
