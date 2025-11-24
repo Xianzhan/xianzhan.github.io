@@ -61,11 +61,11 @@ export const sidebar: DefaultTheme.Sidebar = {
             ]
         }
     ],
-    '/Java/MyBatis/': [
+    '/Java/DataAccess/': [
         {
-            text: 'MyBatis',
+            text: '数据访问',
             items: [
-                { text: '基础', link: '/Java/MyBatis/Base' },
+                { text: 'MyBatis', link: '/Java/DataAccess/MyBatis' },
             ]
         }
     ],
