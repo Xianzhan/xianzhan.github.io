@@ -6,7 +6,7 @@
 
 ## 示例
 
-项目结构
+### 项目结构
 
 ```sh
 src/
@@ -25,7 +25,7 @@ src/
 pom.xml
 ```
 
-pom.xml
+### pom.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -60,6 +60,8 @@ pom.xml
     </dependencies>
 </project>
 ```
+
+### 配置
 
 src/main/resources/mybatis/config.xml
 
@@ -97,6 +99,8 @@ src/main/resources/mybatis/mapper/UserMapper.xml
     </select>
 </mapper>
 ```
+
+### 代码
 
 src/main/java/entity/User.java
 
