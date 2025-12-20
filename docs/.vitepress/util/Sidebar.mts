@@ -47,7 +47,7 @@ export const sidebar: DefaultTheme.Sidebar = {
                     text: 'GC',
                     collapsed: true,
                     items: [
-                        { text: '基础', link: '/Java/JVM/GC/Base' },
+                        { text: 'GC 基础', link: '/Java/JVM/GC/Base' },
                     ]
                 },
             ]
