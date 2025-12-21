@@ -12,8 +12,14 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: '日期时间', link: '/Java/JavaBase/DateTime' },
                 { text: '泛型', link: '/Java/JavaBase/Generics' },
                 { text: '集合框架', link: '/Java/JavaBase/CollectionFramework' },
-                { text: 'IO', link: '/Java/JavaBase/IO' },
-                { text: '网络编程', link: '/Java/JavaBase/Network' },
+                { 
+                    text: 'IO', link: '/Java/JavaBase/IO/Base',
+                    collapsed: true,
+                    items: [
+                        { text: 'IO 基础', link: '/Java/JavaBase/IO/Base' },
+                        { text: '网络编程', link: '/Java/JavaBase/IO/Network' },
+                    ]
+                },
                 { text: '注解', link: '/Java/JavaBase/Annotation' },
                 { text: '类加载器', link: '/Java/JavaBase/ClassLoader' },
                 { text: '反射', link: '/Java/JavaBase/Reflection' },
