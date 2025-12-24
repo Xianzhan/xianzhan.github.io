@@ -18,9 +18,9 @@ export const sidebar: DefaultTheme.Sidebar = {
                     items: [
                         { text: 'IO 基础', link: '/Java/JavaBase/IO/Base' },
                         { text: '网络编程', link: '/Java/JavaBase/IO/Network' },
-                        { text: 'JDBC', link: '/Java/JavaBase/IO/JDBC' },
                     ]
                 },
+                { text: 'JDBC', link: '/Java/JavaBase/JDBC' },
                 { text: '注解', link: '/Java/JavaBase/Annotation' },
                 { text: '类加载器', link: '/Java/JavaBase/ClassLoader' },
                 { text: '反射', link: '/Java/JavaBase/Reflection' },
