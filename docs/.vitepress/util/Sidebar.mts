@@ -9,7 +9,7 @@ export const sidebar: DefaultTheme.Sidebar = {
             items: [
                 { text: '基础', link: '/Java/JavaBase/Base' },
                 { text: '字符串', link: '/Java/JavaBase/String' },
-                { text: '日期时间', link: '/Java/JavaBase/DateTime' },
+                { text: '时间', link: '/Java/JavaBase/DateTime' },
                 { text: '泛型', link: '/Java/JavaBase/Generics' },
                 { text: '容器', link: '/Java/JavaBase/Container' },
                 { 

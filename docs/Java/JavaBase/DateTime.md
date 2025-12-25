@@ -1,4 +1,21 @@
-# 日期时间
+# 时间
+
+## 时区
+
+```java
+String[] availableIds = TimeZone.getAvailableIDs();
+// availableIds: [America/New_York, Asia/Shanghai, GMT, UTC, ...]
+
+TimeZone tzDefault = TimeZone.getDefault();
+// tzDefault.getID(): Asia/Shanghai
+
+Date now = new Date(0);
+// now: Thu Jan 01 08:00:00 CST 1970
+
+// 转换纽约时间
+TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"));
+// now: Wed Dec 31 19:00:00 EST 1969
+```
 
 ## Date
 
@@ -53,3 +70,24 @@ String zeroFormat = sdf.format(zero);
 Date zeroParse = sdf.parse(zeroFormat);
 // zeroParse: Thu Jan 01 08:00:00 GMT+08:00 1970
 ```
+
+## java.time
+
+> @since 8 [JEP 150: Date & Time API](https://openjdk.org/jeps/150)
+
+`java.time` 包下的所有类都是不可变类型且线程安全.
+
+- 日期与时间
+    - `LocalDate`: 仅表示日期，如 `1970-01-01`
+    - `LocalTime`: 仅表示时间，如 `08:00:00.000`
+    - `LocalDateTime`: 表示日期和时间，如 `1970-01-01 08:00:00.000`
+    - `ZonedDateTime`: 表示日期和时间，并带有时区信息，如 `1970-01-01T08:00:00.000+08:00[Asia/Shanghai]`
+- 时间戳
+    - `Instant`: 时间戳，如 `1970-01-01T00:00:00Z`
+- 时区
+    - `ZoneId`: 时区 ID，如 `Asia/Shanghai`
+- 持续时间
+    - `Duration`: 以秒或纳秒为单位的时间间隔，如 `PT1H`
+    - `Period`: 以年、月、日为单位的时间间隔，如 `P1Y1M1D`
+- 日期时间格式化
+    - `DateTimeFormatter`: 日期时间格式化器，如 `yyyy-MM-dd HH:mm:ss`
