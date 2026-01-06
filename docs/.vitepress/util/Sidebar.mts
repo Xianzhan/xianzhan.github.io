@@ -34,6 +34,7 @@ export const sidebar: DefaultTheme.Sidebar = {
         {
             text: 'Java 并发',
             items: [
+                { text: '并发基础', link: '/Java/JavaConcurrency/Base' },
                 { text: '线程', link: '/Java/JavaConcurrency/Thread' },
                 { text: '线程池', link: '/Java/JavaConcurrency/ThreadPool' },
                 { text: '并发同步', link: '/Java/JavaConcurrency/ConcurrentSync' },

@@ -6,7 +6,7 @@ export const nav: DefaultTheme.NavItem[] = [
     {
         text: 'Java', items: [
             { text: 'Java 基础', link: '/Java/JavaBase/Base' },
-            { text: 'Java 并发', link: '/Java/JavaConcurrency/Thread' },
+            { text: 'Java 并发', link: '/Java/JavaConcurrency/Base' },
             { text: 'JVM', link: '/Java/JVM/Base' },
             { text: 'Spring', link: '/Java/Spring/Base' },
             { text: '数据访问', link: '/Java/DataAccess/MyBatis' },
