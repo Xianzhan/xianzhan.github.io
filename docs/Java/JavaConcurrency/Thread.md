@@ -53,3 +53,48 @@ System.out.println("futureTask#get: " + futureTask.get());
 (RUNNABLE) <--> (TIMED_WAITING)
 (RUNNABLE) ---> (TERMINATED)
 ```
+
+## 阻塞（BLOCKED）
+
+线程试图进入一个被其它线程持有的 `synchronized` 同步块或方法。
+
+```java
+synchronized void run() {
+    while (true) ;
+}
+
+void main() throws InterruptedException {
+    var unblockThread = new Thread(this::run);
+    unblockThread.setName("unblockThread");
+    unblockThread.start();
+
+    TimeUnit.SECONDS.sleep(1L);
+
+    var blockedThread = new Thread(this::run);
+    blockedThread.setName("blockedThread");
+    blockedThread.start();
+
+    unblockThread.join();
+    blockedThread.join();
+}
+```
+
+执行上面代码并 `jstack pid`
+
+```log
+"unblockThread" #36 [5640] prio=5 os_prio=0 cpu=16000.00ms elapsed=16.05s tid=0x0000024a25988920 nid=5640 runnable  [0x00000056663ff000]
+   java.lang.Thread.State: RUNNABLE
+        at Main.run(Main.java:2)
+        - locked <0x0000000719742050> (a Main)
+        at Main$$Lambda/0x000000000b042a10.run(Unknown Source)
+        at java.lang.Thread.runWith(java.base@25/Thread.java:1487)
+        at java.lang.Thread.run(java.base@25/Thread.java:1474)
+
+"blockedThread" #37 [19328] prio=5 os_prio=0 cpu=0.00ms elapsed=15.05s tid=0x0000024a254490b0 nid=19328 waiting for monitor entry  [0x0000005665aff000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at Main.run(Main.java:2)
+        - waiting to lock <0x0000000719742050> (a Main)
+        at Main$$Lambda/0x000000000b042c40.run(Unknown Source)
+        at java.lang.Thread.runWith(java.base@25/Thread.java:1487)
+        at java.lang.Thread.run(java.base@25/Thread.java:1474)
+```
