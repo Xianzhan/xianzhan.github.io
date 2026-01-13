@@ -103,9 +103,9 @@ void main() throws InterruptedException {
 
 线程无限期地等待另一个线程执行特定操作，如：
 
-- `Object#wait`
-- `Thred#join`
-- `LockSupport#park`
+- `Object.wait()`
+- `Thred.join()`
+- `LockSupport.park()`
 
 ```java
 void main() throws Exception {
@@ -176,6 +176,71 @@ void main() throws Exception {
         at jdk.internal.misc.Unsafe.park(java.base@25/Native Method)
         at java.util.concurrent.locks.LockSupport.park(java.base@25/LockSupport.java:369)
         at Main$$Lambda/0x0000000032043c00.run(Unknown Source)
+        at java.lang.Thread.runWith(java.base@25/Thread.java:1487)
+        at java.lang.Thread.run(java.base@25/Thread.java:1474)
+```
+
+## 超时等待（TIMED_WAITING）
+
+线程等待一个有限的时间。
+
+- `Object.wait(long)`
+- `Thread.join(long)`
+
+```java
+void main() throws Exception {
+    var locker = new Object();
+    var waitThread = new Thread(() -> {
+        synchronized (locker) {
+            try {
+                locker.wait(Long.MAX_VALUE);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    });
+    waitThread.setName("waitThread");
+    waitThread.start();
+
+    var mainThread = Thread.currentThread();
+    var joinThread = new Thread(() -> {
+        try {
+            mainThread.join(Long.MAX_VALUE);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    });
+    joinThread.setName("joinThread");
+    joinThread.start();
+
+    waitThread.join();
+    joinThread.join();
+}
+```
+
+`jstack pid`
+
+```log
+"waitThread" #36 [14496] prio=5 os_prio=0 cpu=0.00ms elapsed=10.65s tid=0x0000023558ceeb80 nid=14496 in Object.wait()  [0x000000fec5afe000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+        at java.lang.Object.wait0(java.base@25/Native Method)
+        - waiting on <0x0000000719742458> (a java.lang.Object)
+        at java.lang.Object.wait(java.base@25/Object.java:389)
+        at Main.lambda$main$0(Main.java:6)
+        - locked <0x0000000719742458> (a java.lang.Object)
+        at Main$$Lambda/0x0000000082042a10.run(Unknown Source)
+        at java.lang.Thread.runWith(java.base@25/Thread.java:1487)
+        at java.lang.Thread.run(java.base@25/Thread.java:1474)
+
+"joinThread" #37 [11308] prio=5 os_prio=0 cpu=0.00ms elapsed=10.65s tid=0x0000023558cf02f0 nid=11308 in Object.wait()  [0x000000fec5bff000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+        at java.lang.Object.wait0(java.base@25/Native Method)
+        - waiting on <0x0000000719a01eb8> (a java.lang.Thread)
+        at java.lang.Object.wait(java.base@25/Object.java:389)
+        at java.lang.Thread.join(java.base@25/Thread.java:1881)
+        - locked <0x0000000719a01eb8> (a java.lang.Thread)
+        at Main.lambda$main$1(Main.java:18)
+        at Main$$Lambda/0x0000000082042c40.run(Unknown Source)
         at java.lang.Thread.runWith(java.base@25/Thread.java:1487)
         at java.lang.Thread.run(java.base@25/Thread.java:1474)
 ```
