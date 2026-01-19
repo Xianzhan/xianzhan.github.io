@@ -36,8 +36,14 @@ export const sidebar: DefaultTheme.Sidebar = {
             items: [
                 { text: '并发基础', link: '/Java/JavaConcurrency/Base' },
                 { text: '线程', link: '/Java/JavaConcurrency/Thread' },
+                { 
+                    text: '并发同步', link: '/Java/JavaConcurrency/Sync/Base',
+                    collapsed: true,
+                    items: [
+                        { text: '同步基础', link: '/Java/JavaConcurrency/Sync/Base' },
+                    ]
+                },
                 { text: '线程池', link: '/Java/JavaConcurrency/ThreadPool' },
-                { text: '并发同步', link: '/Java/JavaConcurrency/ConcurrentSync' },
                 { text: '并发编排', link: '/Java/JavaConcurrency/ConcurrentOrchestration' },
                 { text: '定时任务', link: '/Java/JavaConcurrency/ScheduledTasks' },
             ]
