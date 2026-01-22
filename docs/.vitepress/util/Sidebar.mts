@@ -27,6 +27,7 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: '代理', link: '/Java/JavaBase/Proxy' },
                 { text: 'Lambda', link: '/Java/JavaBase/Lambda' },
                 { text: '模块', link: '/Java/JavaBase/Module' },
+                { text: 'Unsafe', link: '/Java/JavaBase/Unsafe' },
             ]
         }
     ],
