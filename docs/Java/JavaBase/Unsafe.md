@@ -145,3 +145,73 @@ void main() throws Exception {
 ```
 
 :::
+
+## CAS
+
+CAS（Compare-And-Swap）是一种重要的**无锁并发控制机制**，它通过硬件原子指令支持，实现了高效的多线程数据同步。
+
+CAS 操作包含三个参数：**内存位置（V）**、**预期原值（A）​**和**新值（B）**。其语义是：“我认为位置 V 的值应该是 A，如果是，那么将其更新为 B；否则，不进行任何修改，并告诉我当前的实际值。”​ 这个过程是作为一条硬件级原子指令（如 x86 架构的 `CMPXCHG`）执行的，保证了不可中断性。
+
+**注意**
+
+- **ABA 问题**：CAS 的经典问题：线程 1 读取内存值为 A，之后线程 2 将值修改为 B，然后又修改回 A。随后线程 1 执行 CAS 操作，发现值仍是 A，于是成功更新。但此 “A” 非彼 “A”，中间的状态变化被忽略，可能导致逻辑错误。
+  - 解决方案：使用版本号机制。
+- **自旋开销**：在高并发且竞争激烈的场景下，多个线程的 CAS 操作可能频繁失败并长时间自旋，导致 CPU 资源空转，消耗大量计算资源。
+- **只能保证单变量的原子性**：CAS 操作的对象是单一的共享变量（如一个 `AtomicInteger`）。如果需要同时原子性地更新多个变量，CAS 无法直接实现。此时可以考虑将这些变量封装到一个对象里，然后使用 `AtomicReference` 来更新整个对象引用，或者使用传统的锁机制。
+
+`Unsafe` 提供了一些方法来实现 CAS 操作，包括 `compareAndSwapInt`、`compareAndSwapLong`、`compareAndSwapObject` 等。
+
+::: tip
+
+`Unsafe.compareAndSwapInt(Object, long, int, int)` 的调用链是怎样的？
+
+1. `sun.misc.Unsafe.compareAndSwapInt(Object, long, int, int)`
+
+```java
+@Deprecated(since="23", forRemoval=true)
+@ForceInline
+public final boolean compareAndSwapInt(Object o, long offset,
+                                       int expected,
+                                       int x) {
+    beforeMemoryAccess();
+    return theInternalUnsafe.compareAndSetInt(o, offset, expected, x);
+}
+```
+
+2. `jdk.internal.misc.Unsafe.compareAndSetInt(Object, long, int, int)`
+3. [src/hotspot/share/prims/unsafe.cpp](https://github.com/openjdk/jdk/blob/jdk-25%2B0/src/hotspot/share/prims/unsafe.cpp#L753-L757)
+
+```cpp
+UNSAFE_ENTRY_SCOPED(jboolean, Unsafe_CompareAndSetInt(JNIEnv *env, jobject unsafe, jobject obj, jlong offset, jint e, jint x)) {
+  oop p = JNIHandles::resolve(obj);
+  volatile jint* addr = (volatile jint*)index_oop_from_field_offset_long(p, offset);
+  return Atomic::cmpxchg(addr, e, x) == e;
+} UNSAFE_END
+```
+
+4. [src/hotspot/cpu/x86/x86_64.ad](https://github.com/openjdk/jdk/blob/jdk-25%2B0/src/hotspot/cpu/x86/x86_64.ad#L7078-L7096)
+
+```cpp
+instruct compareAndSwapI(rRegI res,
+                         memory mem_ptr,
+                         rax_RegI oldval, rRegI newval,
+                         rFlagsReg cr)
+%{
+  match(Set res (CompareAndSwapI mem_ptr (Binary oldval newval)));
+  match(Set res (WeakCompareAndSwapI mem_ptr (Binary oldval newval)));
+  effect(KILL cr, KILL oldval);
+
+  format %{ "cmpxchgl $mem_ptr,$newval\t# "
+            "If rax == $mem_ptr then store $newval into $mem_ptr\n\t"
+            "setcc $res \t# emits sete + movzbl or setzue for APX" %}
+  ins_encode %{
+    __ lock();
+    __ cmpxchgl($newval$$Register, $mem_ptr$$Address);
+    __ setcc(Assembler::equal, $res$$Register);
+  %}
+  ins_pipe( pipe_cmpxchg );
+%}
+```
+
+:::
+
