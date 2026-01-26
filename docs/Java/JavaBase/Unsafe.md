@@ -215,3 +215,34 @@ instruct compareAndSwapI(rRegI res,
 
 :::
 
+## 线程管理
+
+- `Unsafe.park(boolean, long)`: 阻塞当前线程，直到被其他线程唤醒或超时。
+- `Unsafe.unpark(Object)`: 唤醒指定线程。
+
+```java
+import sun.misc.Unsafe;
+
+void main() throws Exception {
+    Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
+    theUnsafe.setAccessible(true);
+    Unsafe unsafe = (Unsafe) theUnsafe.get(null);
+
+    var t = new Thread(() -> unsafe.park(false, 0L));
+    t.setName("parked-thread");
+    t.start();
+    // "parked-thread" #36 [10168] prio=5 os_prio=0 cpu=0.00ms elapsed=17.73s tid=0x00000214801c6c50 nid=10168 waiting on condition  [0x000000de785ff000]
+    //   java.lang.Thread.State: WAITING (parking)
+    //        at jdk.internal.misc.Unsafe.park(java.base@25/Native Method)
+    //        at sun.misc.Unsafe.park(jdk.unsupported@25/Unsafe.java:1534)
+    //        at Main.lambda$main$0(Main.java:8)
+    //        at Main$$Lambda/0x0000000096042a10.run(Unknown Source)
+    //        at java.lang.Thread.runWith(java.base@25/Thread.java:1487)
+    //        at java.lang.Thread.run(java.base@25/Thread.java:1474)
+
+    TimeUnit.SECONDS.sleep(120L);
+    unsafe.unpark(t);
+    TimeUnit.SECONDS.sleep(120L);
+}
+
+```
