@@ -3,31 +3,31 @@ import type { DefaultTheme } from 'vitepress'
 // 侧边栏 https://vitepress.dev/zh/reference/default-theme-sidebar
 export const sidebar: DefaultTheme.Sidebar = {
     // Java
-    '/Java/JavaBase/': [
+    '/Java/Base/': [
         {
             text: 'Java',
             items: [
-                { text: '基础', link: '/Java/JavaBase/Base' },
-                { text: '字符串', link: '/Java/JavaBase/String' },
-                { text: '时间', link: '/Java/JavaBase/DateTime' },
-                { text: '泛型', link: '/Java/JavaBase/Generics' },
-                { text: '容器', link: '/Java/JavaBase/Container' },
+                { text: '基础', link: '/Java/Base/Base' },
+                { text: '字符串', link: '/Java/Base/String' },
+                { text: '时间', link: '/Java/Base/DateTime' },
+                { text: '泛型', link: '/Java/Base/Generics' },
+                { text: '容器', link: '/Java/Base/Container' },
                 { 
-                    text: 'IO', link: '/Java/JavaBase/IO/Base',
+                    text: 'IO', link: '/Java/Base/IO/Base',
                     collapsed: true,
                     items: [
-                        { text: 'IO 基础', link: '/Java/JavaBase/IO/Base' },
-                        { text: '网络编程', link: '/Java/JavaBase/IO/Network' },
+                        { text: 'IO 基础', link: '/Java/Base/IO/Base' },
+                        { text: '网络编程', link: '/Java/Base/IO/Network' },
                     ]
                 },
-                { text: 'JDBC', link: '/Java/JavaBase/JDBC' },
-                { text: '注解', link: '/Java/JavaBase/Annotation' },
-                { text: '类加载器', link: '/Java/JavaBase/ClassLoader' },
-                { text: '反射', link: '/Java/JavaBase/Reflection' },
-                { text: '代理', link: '/Java/JavaBase/Proxy' },
-                { text: 'Lambda', link: '/Java/JavaBase/Lambda' },
-                { text: '模块', link: '/Java/JavaBase/Module' },
-                { text: 'Unsafe', link: '/Java/JavaBase/Unsafe' },
+                { text: 'JDBC', link: '/Java/Base/JDBC' },
+                { text: '注解', link: '/Java/Base/Annotation' },
+                { text: '类加载器', link: '/Java/Base/ClassLoader' },
+                { text: '反射', link: '/Java/Base/Reflection' },
+                { text: '代理', link: '/Java/Base/Proxy' },
+                { text: 'Lambda', link: '/Java/Base/Lambda' },
+                { text: '模块', link: '/Java/Base/Module' },
+                { text: 'Unsafe', link: '/Java/Base/Unsafe' },
             ]
         }
     ],

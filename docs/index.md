@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Java
-      link: /Java/JavaBase/Base
+      link: /Java/Base/Base
     - theme: alt
       text: View on GitHub
       link: https://github.com/Xianzhan/xianzhan.github.io
