@@ -31,22 +31,22 @@ export const sidebar: DefaultTheme.Sidebar = {
             ]
         }
     ],
-    '/Java/JavaConcurrency/': [
+    '/Java/Concurrency/': [
         {
             text: 'Java 并发',
             items: [
-                { text: '并发基础', link: '/Java/JavaConcurrency/Base' },
-                { text: '线程', link: '/Java/JavaConcurrency/Thread' },
+                { text: '并发基础', link: '/Java/Concurrency/Base' },
+                { text: '线程', link: '/Java/Concurrency/Thread' },
                 { 
-                    text: '并发同步', link: '/Java/JavaConcurrency/Sync/Base',
+                    text: '并发同步', link: '/Java/Concurrency/Sync/Base',
                     collapsed: true,
                     items: [
-                        { text: '同步基础', link: '/Java/JavaConcurrency/Sync/Base' },
+                        { text: '同步基础', link: '/Java/Concurrency/Sync/Base' },
                     ]
                 },
-                { text: '线程池', link: '/Java/JavaConcurrency/ThreadPool' },
-                { text: '并发编排', link: '/Java/JavaConcurrency/ConcurrentOrchestration' },
-                { text: '定时任务', link: '/Java/JavaConcurrency/ScheduledTasks' },
+                { text: '线程池', link: '/Java/Concurrency/ThreadPool' },
+                { text: '并发编排', link: '/Java/Concurrency/ConcurrentOrchestration' },
+                { text: '定时任务', link: '/Java/Concurrency/ScheduledTasks' },
             ]
         }
     ],
