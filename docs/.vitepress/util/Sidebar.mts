@@ -42,6 +42,7 @@ export const sidebar: DefaultTheme.Sidebar = {
                     collapsed: true,
                     items: [
                         { text: '同步基础', link: '/Java/Concurrency/Sync/Base' },
+                        { text: 'AQS', link: '/Java/Concurrency/Sync/AQS' },
                     ]
                 },
                 { text: '线程池', link: '/Java/Concurrency/ThreadPool' },
