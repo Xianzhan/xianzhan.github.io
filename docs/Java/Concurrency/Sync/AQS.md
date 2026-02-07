@@ -44,3 +44,69 @@ public abstract class AbstractQueuedSynchronizer
   - `ReentrantReadWriteLock`: 高16位表示读锁持有数，低16位表示写锁持有数。通过一个变量同时管理读、写两种状态。
   - `Semaphore`: 当前可用的许可证数量。线程获取许可证时 `state` 减少，释放时增加。
   - `CountDownLatch`: 计数器的当前值。初始化后，每次有线程调用 `countDown()`，`state` 减 1，直至为 0 时唤醒所有等待线程。
+
+```java
+void sleep(long seconds) {
+    try {
+        TimeUnit.SECONDS.sleep(seconds);
+    } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+    }
+}
+
+void main() {
+    // 单线程
+    ReentrantLock lock = new ReentrantLock();
+    lock.lock();
+    lock.unlock();
+
+    // 多线程
+    Thread lockedThread = new Thread(() -> {
+        lock.lock();
+        sleep(3L); // 确保竞争
+        lock.unlock();
+    });
+    lockedThread.setName("lockedThread");
+    lockedThread.start();
+    sleep(1L); // 确保其他线程上锁
+
+    lock.lock();
+    lock.unlock();
+}
+```
+
+### 单线程加锁解锁
+
+执行 `ReentrantLock lock = new ReentrantLock();`
+
+![AQS_SingleThread_New.excalidraw.svg](./AQS_SingleThread_New.excalidraw.svg)
+
+执行 `lock.lock();`，主要执行逻辑在 [java.util.concurrent.locks.ReentrantLock.NonfairSync.initialTryLock()](https://github.com/openjdk/jdk/blob/jdk-25%2B0/src/java.base/share/classes/java/util/concurrent/locks/ReentrantLock.java#L225-L229)
+
+```java
+Thread current = Thread.currentThread();
+if (compareAndSetState(0, 1)) { // first attempt is unguarded
+    setExclusiveOwnerThread(current);
+    return true;
+} // ...
+```
+
+![AQS_SingleThread_Lock.excalidraw.svg](./AQS_SingleThread_Lock.excalidraw.svg)
+
+执行 `lock.unlock();`，主要逻辑在 [java.util.concurrent.locks.ReentrantLock.Sync.tryRelease(1)](https://github.com/openjdk/jdk/blob/jdk-25%2B0/src/java.base/share/classes/java/util/concurrent/locks/ReentrantLock.java#L173-L182)
+
+```java
+int c = getState() - releases;
+if (getExclusiveOwnerThread() != Thread.currentThread())
+    // 判断是否由加锁线程解锁
+    throw new IllegalMonitorStateException();
+boolean free = (c == 0);
+if (free)
+    setExclusiveOwnerThread(null);
+```
+
+解锁后状态将恢复到 `new` 的状态
+
+![AQS_SingleThread_New.excalidraw.svg](./AQS_SingleThread_New.excalidraw.svg)
+
+可见，在单线程加解锁主要是 CAS 的消耗。
