@@ -110,3 +110,134 @@ if (free)
 ![AQS_SingleThread_New.excalidraw.svg](./AQS_SingleThread_New.excalidraw.svg)
 
 可见，在单线程加解锁主要是 CAS 的消耗。
+
+### 多线程加锁解锁
+
+`lockedThread` 线程先获取锁加锁 `lock.lock();`，此时的状态为
+
+![AQS_Multithread_LockedThread_Lock.excalidraw.svg](./AQS_Multithread_LockedThread_Lock.excalidraw.svg)
+
+---
+
+这个时候 `mainThread` 再去获取锁加锁 `lock.lock();` 时，主要逻辑在 [java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire(null, arg, false, false, false, 0L)](https://github.com/openjdk/jdk/blob/jdk-25%2B0/src/java.base/share/classes/java/util/concurrent/locks/AbstractQueuedSynchronizer.java#L704-L804)
+
+第一次循环，执行 `tryInitializeHead()`
+
+```java
+Node h = // ...
+
+if (U.compareAndSetReference(this, HEAD, null, h))
+    return tail = h;
+```
+
+![AQS_Multithread_LockedThread_Lock_Acquire_1.excalidraw.svg](./AQS_Multithread_LockedThread_Lock_Acquire_1.excalidraw.svg)
+
+第二次循环，执行 `node = (shared) ? new SharedNode() : new ExclusiveNode();`
+
+![AQS_Multithread_LockedThread_Lock_Acquire_2.excalidraw.svg](./AQS_Multithread_LockedThread_Lock_Acquire_2.excalidraw.svg)
+
+第三次循环，
+
+```java
+Node pred = null;               // predecessor of node when enqueued
+// ...
+
+Node t;
+if ((t = tail) == null) {           // initialize queue
+    // ...
+} else if (pred == null) {          // try to enqueue
+    node.waiter = current;
+    node.setPrevRelaxed(t);         // avoid unnecessary fence
+    if (!casTail(t, node))
+        node.setPrevRelaxed(null);  // back out
+    else
+        t.next = node;
+}
+```
+
+![AQS_Multithread_LockedThread_Lock_Acquire_3.excalidraw.svg](./AQS_Multithread_LockedThread_Lock_Acquire_3.excalidraw.svg)
+
+第四次循环，
+
+```java
+Node node
+// ...
+Node pred = null;               // predecessor of node when enqueued
+// ...
+
+if (!first && (pred = (node == null) ? null : node.prev) != null &&
+        !(first = (head == pred))) {
+} else if (node.status == 0) {
+    node.status = WAITING;          // enable signal and recheck
+}
+```
+
+![AQS_Multithread_LockedThread_Lock_Acquire_4.excalidraw.svg](./AQS_Multithread_LockedThread_Lock_Acquire_4.excalidraw.svg)
+
+第五次循环，
+
+```java
+if (!first && (pred = (node == null) ? null : node.prev) != null &&
+        !(first = (head == pred))) {
+    // ...
+} else {
+    // ...
+    if (!timed)
+        LockSupport.park(this);
+    // ...
+}
+```
+
+![AQS_Multithread_LockedThread_Lock_Acquire_5.excalidraw.svg](./AQS_Multithread_LockedThread_Lock_Acquire_5.excalidraw.svg)
+
+至此，`mainThread` 线程进入 CLH 队列并 `LockSupport.park(Object)` 等待唤醒。
+
+---
+
+`lockedThread` 解锁时也很简单，执行 `lock.unlock();`，主要逻辑在 [java.util.concurrent.locks.AbstractQueuedSynchronizer.release(1)](https://github.com/openjdk/jdk/blob/jdk-25+0/src/java.base/share/classes/java/util/concurrent/locks/AbstractQueuedSynchronizer.java#L1097-L1103)，然后唤醒 `mainThread`
+
+```java
+private static void signalNext(Node h) {
+    Node s;
+    if (h != null && (s = h.next) != null && s.status != 0) {
+        s.getAndUnsetStatus(WAITING);
+        LockSupport.unpark(s.waiter);
+    }
+}
+```
+
+![AQS_Multithread_LockedThread_UnLock.excalidraw.svg](./AQS_Multithread_LockedThread_UnLock.excalidraw.svg)
+
+---
+
+`mainThread` `unpark` 之后获取到 CPU 继续执行 `node.clearStatus();`
+
+![AQS_Multithread_LockedThread_UnLock_Acquire_1.excalidraw.svg](./AQS_Multithread_LockedThread_UnLock_Acquire_1.excalidraw.svg)
+
+继续执行
+
+```java
+boolean acquired;
+
+acquired = tryAcquire(arg); // true
+
+if (acquired) {
+    if (first) {
+        node.prev = null;
+        head = node;
+        pred.next = null;
+        node.waiter = null;
+        if (shared)
+            signalNextIfShared(node);
+        if (interrupted)
+            current.interrupt();
+    }
+    return 1;
+}
+```
+
+![AQS_Multithread_LockedThread_UnLock_Acquire_2.excalidraw.svg](./AQS_Multithread_LockedThread_UnLock_Acquire_2.excalidraw.svg)
+
+流程图清理下其它节点，则又变成单线程加锁状态了，只不过这个时候的 AQS 的 `head` 和 `tail` 不为空，指向了同一个 CLH 节点
+
+![AQS_Multithread_LockedThread_UnLock_Done.excalidraw.svg](./AQS_Multithread_LockedThread_UnLock_Done.excalidraw.svg)
