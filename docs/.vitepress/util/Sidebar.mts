@@ -12,14 +12,6 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: '时间', link: '/Java/Base/DateTime' },
                 { text: '泛型', link: '/Java/Base/Generics' },
                 { text: '容器', link: '/Java/Base/Container' },
-                { 
-                    text: 'IO', link: '/Java/Base/IO/Base',
-                    collapsed: true,
-                    items: [
-                        { text: 'IO 基础', link: '/Java/Base/IO/Base' },
-                        { text: '网络编程', link: '/Java/Base/IO/Network' },
-                    ]
-                },
                 { text: 'JDBC', link: '/Java/Base/JDBC' },
                 { text: '注解', link: '/Java/Base/Annotation' },
                 { text: '类加载器', link: '/Java/Base/ClassLoader' },
@@ -48,6 +40,15 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: '线程池', link: '/Java/Concurrency/ThreadPool' },
                 { text: '并发编排', link: '/Java/Concurrency/ConcurrentOrchestration' },
                 { text: '定时任务', link: '/Java/Concurrency/ScheduledTasks' },
+            ]
+        }
+    ],
+    '/Java/IO/': [
+        {
+            text: 'Java IO',
+            items: [
+                { text: 'IO 基础', link: '/Java/IO/Base' },
+                { text: '网络编程', link: '/Java/IO/Network' },
             ]
         }
     ],
