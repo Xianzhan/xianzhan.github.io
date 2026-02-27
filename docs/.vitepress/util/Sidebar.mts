@@ -12,7 +12,6 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: '时间', link: '/Java/Base/DateTime' },
                 { text: '泛型', link: '/Java/Base/Generics' },
                 { text: '容器', link: '/Java/Base/Container' },
-                { text: 'JDBC', link: '/Java/Base/JDBC' },
                 { text: '注解', link: '/Java/Base/Annotation' },
                 { text: '类加载器', link: '/Java/Base/ClassLoader' },
                 { text: '反射', link: '/Java/Base/Reflection' },
@@ -83,6 +82,7 @@ export const sidebar: DefaultTheme.Sidebar = {
         {
             text: '数据访问',
             items: [
+                { text: 'JDBC', link: '/Java/DataAccess/JDBC' },
                 { text: 'MyBatis', link: '/Java/DataAccess/MyBatis' },
             ]
         }
