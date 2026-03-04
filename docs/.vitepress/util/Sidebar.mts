@@ -48,6 +48,13 @@ export const sidebar: DefaultTheme.Sidebar = {
             items: [
                 { text: 'IO 基础', link: '/Java/IO/Base' },
                 { text: '网络编程', link: '/Java/IO/Network' },
+                {
+                    text: 'Feign', link: '/Java/IO/Feign/Base',
+                    collapsed: true,
+                    items: [
+                        { text: 'Feign 基础', link: '/Java/IO/Feign/Base' },
+                    ]
+                },
             ]
         }
     ],
