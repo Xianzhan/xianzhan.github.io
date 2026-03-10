@@ -80,8 +80,14 @@ export const sidebar: DefaultTheme.Sidebar = {
         {
             text: 'Spring',
             items: [
-                { text: '基础', link: '/Java/Spring/Base' },
-                { text: '数据访问', link: '/Java/Spring/DataAccess' },
+                {
+                    text: 'Spring 基础', link: '/Java/Spring/Base/Base',
+                    collapsed: true,
+                    items: [
+                        { text: '基础', link: '/Java/Spring/Base/Base' },
+                        { text: '数据访问', link: '/Java/Spring/Base/DataAccess' },
+                    ]
+                },
             ]
         }
     ],
