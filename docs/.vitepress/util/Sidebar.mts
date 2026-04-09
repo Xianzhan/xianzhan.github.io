@@ -101,6 +101,17 @@ export const sidebar: DefaultTheme.Sidebar = {
         }
     ],
 
+    // Python
+
+    '/Python/Base/': [
+        {
+            text: 'Python',
+            items: [
+                { text: '基础', link: '/Python/Base/Base' },
+            ]
+        }
+    ],
+
     // 服务
     '/Service/MySQL/': [
         {

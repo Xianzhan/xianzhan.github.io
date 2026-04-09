@@ -13,6 +13,11 @@ export const nav: DefaultTheme.NavItem[] = [
             { text: '数据访问', link: '/Java/DataAccess/JDBC' },
         ]
     },
+    { 
+        text: 'Python', items: [
+            { text: 'Python 基础', link: '/Python/Base/Base' }
+        ]
+    },
     {
         text: '服务', items: [
             { text: 'MySQL', link: '/Service/MySQL/Base' },
