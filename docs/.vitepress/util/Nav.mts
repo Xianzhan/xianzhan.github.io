@@ -14,6 +14,11 @@ export const nav: DefaultTheme.NavItem[] = [
         ]
     },
     {
+        text: 'AI', items: [
+            { text: 'AI 基础', link: '/AI/Base/Base' },
+        ]
+    },
+    {
         text: '服务', items: [
             { text: 'MySQL', link: '/Service/MySQL/Base' },
         ]

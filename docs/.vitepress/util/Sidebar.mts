@@ -101,6 +101,16 @@ export const sidebar: DefaultTheme.Sidebar = {
         }
     ],
 
+    // AI
+    '/AI/Base/': [
+        {
+            text: 'AI',
+            items: [
+                { text: '基础', link: '/AI/Base/Base' },
+            ]
+        }
+    ],
+
     // 服务
     '/Service/MySQL/': [
         {
