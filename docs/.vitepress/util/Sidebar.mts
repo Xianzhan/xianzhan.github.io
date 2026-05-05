@@ -28,7 +28,7 @@ export const sidebar: DefaultTheme.Sidebar = {
             items: [
                 { text: '并发基础', link: '/Java/Concurrency/Base' },
                 { text: '线程', link: '/Java/Concurrency/Thread' },
-                { 
+                {
                     text: '并发同步', link: '/Java/Concurrency/Sync/Base',
                     collapsed: true,
                     items: [
@@ -86,6 +86,13 @@ export const sidebar: DefaultTheme.Sidebar = {
                     items: [
                         { text: '基础', link: '/Java/Spring/Base/Base' },
                         { text: '数据访问', link: '/Java/Spring/Base/DataAccess' },
+                    ]
+                },
+                {
+                    text: 'Spring AI', link: '/Java/Spring/AI/Base',
+                    collapsed: true,
+                    items: [
+                        { text: '基础', link: '/Java/Spring/AI/Base' },
                     ]
                 },
             ]
