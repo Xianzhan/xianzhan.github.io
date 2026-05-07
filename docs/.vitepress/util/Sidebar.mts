@@ -107,6 +107,21 @@ export const sidebar: DefaultTheme.Sidebar = {
             ]
         }
     ],
+    '/Java/RolePermissions/': [
+        {
+            text: '角色权限',
+            items: [
+                { text: '基础', link: '/Java/RolePermissions/Base' },
+                {
+                    text: 'Shiro', link: '/Java/RolePermissions/Shiro/Base',
+                    collapsed: true,
+                    items: [
+                        { text: '基础', link: '/Java/RolePermissions/Shiro/Base' },
+                    ]
+                },
+            ]
+        }
+    ],
 
     // 服务
     '/Service/MySQL/': [
