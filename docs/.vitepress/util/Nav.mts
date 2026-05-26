@@ -17,6 +17,7 @@ export const nav: DefaultTheme.NavItem[] = [
     {
         text: '服务', items: [
             { text: 'MySQL', link: '/Service/MySQL/Base' },
+            { text: 'Redis', link: '/Service/Redis/Base' },
         ]
     },
     {

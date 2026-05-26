@@ -139,6 +139,14 @@ export const sidebar: DefaultTheme.Sidebar = {
             ]
         }
     ],
+    '/Service/Redis/': [
+        {
+            text: 'Redis',
+            items: [
+                { text: '基础', link: '/Service/Redis/Base' },
+            ]
+        }
+    ],
 
     // 系统
     '/System/Network/': [
