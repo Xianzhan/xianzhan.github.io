@@ -63,6 +63,7 @@ export const sidebar: DefaultTheme.Sidebar = {
             text: 'JVM',
             items: [
                 { text: '基础', link: '/Java/JVM/Base' },
+                { text: '参数', link: '/Java/JVM/Option' },
                 { text: '初始化', link: '/Java/JVM/Init' },
                 { text: 'class 文件', link: '/Java/JVM/ClassFile' },
                 { text: 'class 加载', link: '/Java/JVM/ClassLoading' },
