@@ -28,7 +28,7 @@ export const sidebar: DefaultTheme.Sidebar = {
             items: [
                 { text: '并发基础', link: '/Java/Concurrency/Base' },
                 { text: '线程', link: '/Java/Concurrency/Thread' },
-                { 
+                {
                     text: '并发同步', link: '/Java/Concurrency/Sync/Base',
                     collapsed: true,
                     items: [
@@ -63,6 +63,7 @@ export const sidebar: DefaultTheme.Sidebar = {
             text: 'JVM',
             items: [
                 { text: '基础', link: '/Java/JVM/Base' },
+                { text: '参数', link: '/Java/JVM/Option' },
                 { text: '初始化', link: '/Java/JVM/Init' },
                 { text: 'class 文件', link: '/Java/JVM/ClassFile' },
                 { text: 'class 加载', link: '/Java/JVM/ClassLoading' },
@@ -88,6 +89,13 @@ export const sidebar: DefaultTheme.Sidebar = {
                         { text: '数据访问', link: '/Java/Spring/Base/DataAccess' },
                     ]
                 },
+                {
+                    text: 'Spring AI', link: '/Java/Spring/AI/Base',
+                    collapsed: true,
+                    items: [
+                        { text: '基础', link: '/Java/Spring/AI/Base' },
+                    ]
+                },
             ]
         }
     ],
@@ -97,6 +105,28 @@ export const sidebar: DefaultTheme.Sidebar = {
             items: [
                 { text: 'JDBC', link: '/Java/DataAccess/JDBC' },
                 { text: 'MyBatis', link: '/Java/DataAccess/MyBatis' },
+                {
+                    text: 'Redisson', link: '/Java/DataAccess/Redisson/Base',
+                    collapsed: true,
+                    items: [
+                        { text: '基础', link: '/Java/DataAccess/Redisson/Base' },
+                    ]
+                },
+            ]
+        }
+    ],
+    '/Java/RolePermissions/': [
+        {
+            text: '角色权限',
+            items: [
+                { text: '基础', link: '/Java/RolePermissions/Base' },
+                {
+                    text: 'Shiro', link: '/Java/RolePermissions/Shiro/Base',
+                    collapsed: true,
+                    items: [
+                        { text: '基础', link: '/Java/RolePermissions/Shiro/Base' },
+                    ]
+                },
             ]
         }
     ],
@@ -117,6 +147,14 @@ export const sidebar: DefaultTheme.Sidebar = {
             text: 'MySQL',
             items: [
                 { text: '基础', link: '/Service/MySQL/Base' },
+            ]
+        }
+    ],
+    '/Service/Redis/': [
+        {
+            text: 'Redis',
+            items: [
+                { text: '基础', link: '/Service/Redis/Base' },
             ]
         }
     ],

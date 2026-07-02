@@ -11,6 +11,7 @@ export const nav: DefaultTheme.NavItem[] = [
             { text: 'JVM', link: '/Java/JVM/Base' },
             { text: 'Spring', link: '/Java/Spring/Base/Base' },
             { text: '数据访问', link: '/Java/DataAccess/JDBC' },
+            { text: '角色权限', link: '/Java/RolePermissions/Base' },
         ]
     },
     {
@@ -21,6 +22,7 @@ export const nav: DefaultTheme.NavItem[] = [
     {
         text: '服务', items: [
             { text: 'MySQL', link: '/Service/MySQL/Base' },
+            { text: 'Redis', link: '/Service/Redis/Base' },
         ]
     },
     {
