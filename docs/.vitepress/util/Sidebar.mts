@@ -49,6 +49,13 @@ export const sidebar: DefaultTheme.Sidebar = {
                 { text: 'IO 基础', link: '/Java/IO/Base' },
                 { text: '网络编程', link: '/Java/IO/Network' },
                 {
+                    text: 'Netty', link: '/Java/IO/Netty/Base',
+                    collapsed: true,
+                    items: [
+                        { text: 'Netty 基础', link: '/Java/IO/Netty/Base' },
+                    ]
+                },
+                {
                     text: 'Feign', link: '/Java/IO/Feign/Base',
                     collapsed: true,
                     items: [
