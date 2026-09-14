@@ -111,7 +111,13 @@ export const sidebar: DefaultTheme.Sidebar = {
             text: '数据访问',
             items: [
                 { text: 'JDBC', link: '/Java/DataAccess/JDBC' },
-                { text: 'MyBatis', link: '/Java/DataAccess/MyBatis' },
+                { 
+                    text: 'MyBatis', link: '/Java/DataAccess/MyBatis/Base',
+                    collapsed: true,
+                    items: [
+                        { text: '基础', link: '/Java/DataAccess/MyBatis/Base' },
+                    ]
+                },
                 {
                     text: 'Redisson', link: '/Java/DataAccess/Redisson/Base',
                     collapsed: true,
