@@ -1,0 +1,17 @@
+/*
+ * viewerjs 打开时会把 body 设为 overflow: hidden 并补偿 padding-right，
+ * 但 VitePress 的导航栏 / 侧边栏 / 右侧大纲是 position: fixed，
+ * 滚动条消失导致视口变宽，这些固定元素会整体平移。
+ * 始终保留滚动条槽位，打开图片查看器时布局不再抖动。
+ */
+html {
+    scrollbar-gutter: stable;
+}
+
+/*
+ * 槽位已由 scrollbar-gutter 常驻保留，viewerjs 打开时给 body 补的
+ * padding-right 反而会把文章内容挤动，直接覆盖掉。
+ */
+body.viewer-open {
+    padding-right: 0 !important;
+}
